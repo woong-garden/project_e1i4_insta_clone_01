@@ -127,6 +127,7 @@
             padding: 10px;
         }
 
+
         .container-fluid {
             display: flex;
             flex-direction: row;
@@ -610,10 +611,13 @@
 
 
 
-
     <!--제이쿼리-->
     <!--이미지파일 올리기-->
     <script>
+        
+
+
+
         $('#nav_bar_add_box').click(function () {
             $('#first.modal').css({
                 display: 'flex',
@@ -779,6 +783,10 @@
             });
             $('#second_modal').css({
                 display: 'none'
+            });
+            
+            $(document.body).css({
+                overflow: 'scroll'
             });
         });
 

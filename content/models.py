@@ -4,7 +4,6 @@ from django.db import models
 # Create your models here.
 class Feed(models.Model):
     content = models.TextField()    # 글내용
-    #image = models.TextField()  # 피드 이미지 이미지필드 파일필드 바꾸기
     image = models.ImageField(upload_to="")
     email = models.EmailField(default='')     # 글쓴이
 
