@@ -76,7 +76,7 @@
 <div class="navbar">
     <nav>
         <div class="container-fluid">
-            <a class="navbar-brand" href="main"><img
+            <a class="navbar-brand" href="/main/"><img
                     src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcxypuP%2FbtrNum2kL0I%2FFr2goA8Vq3qPYzWRgork10%2Fimg.png"></a>
             <div class="nav-search-bar">
                 <img style="width: 16px; height:16px;" src="{%static 'icons/search_empty.png' %}" />
@@ -84,7 +84,7 @@
             </div>
             <div class="icon">
                 <div>
-                    <a href="main" class="icon_in"><img src="{%static 'icons/home.png' %}" /></a>
+                    <a href="/main/" class="icon_in"><img src="{%static 'icons/home.png' %}" /></a>
                 </div>
 
                 <div class="icon_in">
@@ -103,7 +103,7 @@
                         </div>
                     </a>
                     <ul class="dropdown-menu" style="left:-158px" aria-labelledby="dropdownMenuLink">
-                        <li><a class="dropdown-item" href="/content/profile">프로필</a></li>
+                        <li><a class="dropdown-item" href="/content/profile/">프로필</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
@@ -335,7 +335,7 @@
         fd.append('content', content);
 
         $.ajax({
-            url: "/content/upload",
+            url: "/content/upload/",
             data: fd,
             method: "POST",
             processData: false,
@@ -348,7 +348,7 @@
             },
             complete: function () {
                 console.log("완료");
-                location.replace("/main");
+                location.replace("/main/");
             }
         });
     });
@@ -424,7 +424,7 @@
         fd.append('email', email);
 
         $.ajax({
-            url: "/user/profile/upload",
+            url: "/user/profile/upload/",
             data: fd,
             method: "POST",
             processData: false,
@@ -437,7 +437,7 @@
             },
             complete: function () {
                 console.log("완료");
-                location.replace("/content/profile");
+                location.replace("/content/profile/");
             }
         });
 
