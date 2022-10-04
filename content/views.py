@@ -20,6 +20,14 @@ class Main(APIView):
         if user is None:
             return render(request, "user/login.html")
 
+        # 오형석 - 회원님을 위한 추천에 유저리스트 구현
+        recommend_user_object_list = User.objects.all()
+        recommend_user_list = []
+        for user in recommend_user_object_list:
+            recommend_user_list.append(dict(profile_image=user.profile_image,
+                                        recommend_nickname=user.nickname))
+        
+
         feed_object_list = Feed.objects.all().order_by('-id')  # select  * from content_feed;
         feed_list = []
 
@@ -49,7 +57,7 @@ class Main(APIView):
         
         
 
-        return render(request, "e1i4/main.html", context=dict(feeds=feed_list, user=user))
+        return render(request, "e1i4/main.html", context=dict(feeds=feed_list, user=user, recommends=recommend_user_list)) # 오형석 - 유저리스트 추가
 
 
 class UploadFeed(APIView):

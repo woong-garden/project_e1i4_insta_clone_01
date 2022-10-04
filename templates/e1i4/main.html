@@ -519,17 +519,17 @@
 
             <!--오른쪽 팔로우-->
             <div class="right-follow">
-                {% for feed in feeds %}
+                {% for recommend in recommends %}
                 <div class="out-box">
                     
                     <div style="display:flex;">
                         <div class="box" style="width: 35px; height: 35px;">
                             <img class="profile"
-                                src="{% get_media_prefix %}{{ feed.profile_image }}">
+                                src="{% get_media_prefix %}{{ recommend.profile_image }}">
                         </div>
                         <div class="follow-user">
                             <div>
-                                {{ feed.nickname }}
+                                {{ recommend.recommend_nickname }}
                             </div>
                             <div>
                                 안녕하세요
