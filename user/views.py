@@ -8,11 +8,13 @@ from .models import User
 from django.contrib.auth.hashers import make_password
 from e1i4.settings import MEDIA_ROOT
 
+
 class Join(APIView):
     def get(self, request):
         return render(request, "user/join.html")
 
     def post(self, request):
+        # TODO 회원가입
         email = request.data.get('email', None)
         nickname = request.data.get('nickname', None)
         name = request.data.get('name', None)

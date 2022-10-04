@@ -31,6 +31,7 @@ class Main(APIView):
                 reply_user = User.objects.filter(email=reply.email).first()
                 reply_list.append(dict(reply_content=reply.reply_content,
                                        nickname=reply_user.nickname))
+                                       
             like_count=Like.objects.filter(feed_id=feed.id, is_like=True).count()
             is_liked=Like.objects.filter(feed_id=feed.id, email=email, is_like=True).exists()
             is_marked=Bookmark.objects.filter(feed_id=feed.id, email=email, is_marked=True).exists()
@@ -48,7 +49,7 @@ class Main(APIView):
         
         
 
-        return render(request, "e1i4/main.html", context=dict(feeds=feed_list, user=user, reply_user=reply_user, feed_user=feed_user))
+        return render(request, "e1i4/main.html", context=dict(feeds=feed_list, user=user))
 
 
 class UploadFeed(APIView):
