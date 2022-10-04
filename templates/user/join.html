@@ -44,9 +44,8 @@
                 <input type="password" class="form-control" style="font-size: 14px; height: 24px" id="input_password" placeholder="name@example.com">
                 <label for="input_password" style="font-size: 14px;padding: 4px 10px">비밀번호</label>
             </div>
-        </div> 
+        </div>
         <button id="join_button"  class="btn btn-primary" style="width: 100%"> 가입</button>
-        
     </div> {% csrf_token %}
     <div style="padding: 20px ;text-align: center;border: solid 1px rgba(219, 219, 219, 1); width: 300px; height: 70px; margin-top: 30px; background: white">
         <div> 계정이 있으신가요? <a href="login/">로그인</a></div>
@@ -54,9 +53,11 @@
 </div>
 
 
+
 <!-- Optional JavaScript; choose one of the two! -->
 <script>
     $('#join_button').click(function () {
+
         let email = $('#input_email').val();
         let password = $('#input_password').val();
         let nickname = $('#input_nickname').val();
