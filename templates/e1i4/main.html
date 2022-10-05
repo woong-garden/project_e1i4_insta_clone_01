@@ -127,6 +127,7 @@
             padding: 10px;
         }
 
+
         .container-fluid {
             display: flex;
             flex-direction: row;
@@ -457,20 +458,31 @@
                     </div>
 
                     <div style="margin: 0 20px;text-align: left;font-size: 16px"> 
-                      <b>{{ feed.nickname }}</b> 
-                      {{ feed.content}}
+                      <b>{{ feed.nickname }}</b> {{ feed.content}} 
+                      
                     </div>
-                    
+                    <!--피드-->
                     <div id="reply_list_{{ feed.id }}">
+
                       {% for reply in feed.reply_list %}
-                      <div style="margin: 10px 20px;text-align: left;font-size: 14px">
-                          <b>{{ reply.nickname }}</b> {{ reply.reply_content }}
-                      </div>
+                        <div style="margin: 10px 20px;text-align: left;font-size: 14px">
+                            <b>{{ reply.nickname }}</b> {{ reply.reply_content }} 
+                            
+                            {% if reply.nickname == user.nickname  %}
+                            <a href="/content/delete/{{ reply.id }}/" >삭제</a>
+
+                            {% elif feed.nickname == user.nickname %}
+                            <a href="/content/delete/{{ reply.id }}/" >삭제</a>
+                            
+                            {% endif %}
+
+                        </div>
+
                       {% endfor %}
                     </div>  
 
                     <div class="comment-wrap">
-                        
+
                     </div>
                     <div id="reply_list_{{ feed.id }}">
                         <div class="input-container">
@@ -485,7 +497,7 @@
                                             placeholder="댓글 달기 ...">          
                                 </div>
                                     <div feed_id="{{ feed.id }}" class="upload_reply"
-                                        style="width: 50px;color: cornflowerblue; font-weight: bold; cursor: pointer">
+                                        style="width: 50px;color: cornflowerblue; font-weight: bold; cursor: pointer"> 
                                               게시
                                     </div> 
                             </div>
@@ -561,7 +573,7 @@
                     새 이미지 업로드
                 </div>
                 <div style="width: 40px; background: transparent">
-                    <span class="modal_close material-icons-outlined">close</span>
+                    <span class="modal_close material-icons-outlined" style="cursor: pointer;">close</span>
                 </div>
             </div>
 
@@ -575,14 +587,14 @@
     <!-- 두번째 모달 -->
     <div id="second_modal" class="modal_overlay">
         <div class="modal_window">
-            <div style="display: flex; flex-direction: row; justify-content: space-between">
+            <div style="display: flex; flex-direction: row; justify-content: space-between;">
                 <div style="width: 40px; background: transparent">
 
                 </div>
                 <div>
                     새 이미지 업로드
                 </div>
-                <div style="width: 40px; background: transparent">
+                <div style="width: 40px; background: transparent ">
                     <span class="modal_close material-icons-outlined">close</span>
                 </div>
             </div>
@@ -615,10 +627,13 @@
 
 
 
-
     <!--제이쿼리-->
     <!--이미지파일 올리기-->
     <script>
+        
+
+
+
         $('#nav_bar_add_box').click(function () {
             $('#first.modal').css({
                 display: 'flex',
@@ -787,6 +802,10 @@
             });
             $('#second_modal').css({
                 display: 'none'
+            });
+            
+            $(document.body).css({
+                overflow: 'auto'
             });
         });
 
