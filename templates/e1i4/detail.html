@@ -21,7 +21,7 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
 
-    <title>e1i4gram</title>
+    <title>Hello, world!</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300&display=swap" rel="stylesheet">
 
@@ -29,9 +29,6 @@
     <link
         href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
         rel="stylesheet">
-
-    <!--타이틀로고-->
-    <link rel="shortcut icon" type="image/x-icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/1200px-Instagram_logo_2022.svg.png">
 
     <!--css링크-->
     {% comment %} <link rel="stylesheet" href="{% static 'style.css' %}"> {% endcomment %}
@@ -129,7 +126,6 @@
             position: relative;
             padding: 10px;
         }
-
 
         .container-fluid {
             display: flex;
@@ -361,83 +357,26 @@
             cursor: pointer;
         }
 
-
-        .setting_button {
-            padding: 10px 10px; 
-            background-color: white; 
-            border: none; 
-        }
-
     </style>                
 </head>
 
 <body>
-    <!--내비바-->
-    <div class="navbar">
-        <nav>
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#"><img
-                        src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcxypuP%2FbtrNum2kL0I%2FFr2goA8Vq3qPYzWRgork10%2Fimg.png"></a>
-                <div class="nav-search-bar">
-                    <img style="width: 16px; height:16px;" src="{%static 'icons/search_empty.png' %}" />
-                    <input class="form-control me-2" type="search" placeholder="검색" aria-label="Search">
-                </div>
-                <div class="icon">
-                    <div>
-                        <a href="" class="icon_in"><img src="{%static 'icons/home.png' %}" /></a>
-                    </div>
-
-                    <div class="icon_in">
-                        <a id="nav_bar_add_box"><img src="{%static 'icons/plus_empty.png' %}" /></a>
-                    </div>
-                    <div class="icon_in">
-                        <a><img src="{%static 'icons/compass_empty.png' %}" /></a>
-                    </div>
-                    <div class="icon_in">
-                        <a><img src="{%static 'icons/like_empty.png' %}" /></a>
-                    </div>
-                    <div class="dropdown">
-                        <a href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                            <div class="box" style="width: 24px; height: 24px; margin-left: 24px;">
-                                <img class="profile" src="{% get_media_prefix %}{{ user.profile_image }}">
-                            </div>
-                        </a>
-                        <ul class="dropdown-menu" style="left:-158px" aria-labelledby="dropdownMenuLink">
-                            <li><a class="dropdown-item" href="/content/profile/">프로필</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="/user/logout/">로그아웃</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </div>
-
 
 
     <div class="main-container">
         <div>
             <div style="margin: 10px 32px;">
                 {% for feed in feeds %}
+                {% if feed.id == pk %}
                 <!--게시글 1-->
                 <div class="feed_box">
-                    <div class="profile-wrap" style="justify-content:space-between;">
-                        <div style="display:flex; flex-direction:row;">
-                            <div class="box">
-                                <img class="profile" src="{% get_media_prefix %}{{ feed.profile_image }}">
-                            </div>
-                            <div class="post-user-name">
-                                {{ feed.nickname }}
-                            </div>
+                    <div class="profile-wrap">
+                        <div class="box">
+                            <img class="profile" src="{% get_media_prefix %}{{ feed.profile_image }}">
                         </div>
-                        <!-- 게시글 삭제, 수정 버튼 -->
-                        {% if feed.nickname == user.nickname %}
-                        <div>
-                            <a class="setting_buttons"><img src="{%static 'icons/more_horiz.png' %}" /></a>
+                        <div class="post-user-name">
+                            {{ feed.nickname }}
                         </div>
-                        {% endif %}
                     </div>
                     
                     <div class="posting-wrap-img">
@@ -451,14 +390,12 @@
                             {% else %}
                             <div id="favorite_{{ feed.id }}" feed_id="{{ feed.id }}" class="favorite unlike"></div>
                             {% endif %}
-
                             <!-- 형석 피드 수정 시도 -->
-                            <a href="/content/{{ feed.id }}"><span id="detail_{{ feed.id }}" feed_id="{{ feed.id }}"
-                            class="material-icons-outlined" style="cursor: pointer">
+                            <span id="detail_{{ feed.id }}" feed_id="{{ feed.id }}"
+                            class="bookmark material-icons-outlined" style="cursor: pointer">
                                 mode_comment
-                            </span></a>
+                            </span>
                             <!-- <a class="icon-padding"><img src="{%static 'icons/bubble_empty.png' %}" /></a> -->
-
                         </div>
 
                         <div>
@@ -472,38 +409,26 @@
                             </span>
                         </div>
                     </div>
-                        
+
                     <div class="like-wrap">
                         좋아요 {{ feed.like_count }}개
                     </div>
 
-
                     <div style="margin: 0 20px;text-align: left;font-size: 16px"> 
-                      <b>{{ feed.nickname }}</b> {{ feed.content}} 
-                      
+                      <b>{{ feed.nickname }}</b> 
+                      {{ feed.content}}
                     </div>
-                    <!--피드-->
+                    
                     <div id="reply_list_{{ feed.id }}">
-
                       {% for reply in feed.reply_list %}
-                        <div style="margin: 10px 20px;text-align: left;font-size: 14px">
-                            <b>{{ reply.nickname }}</b> {{ reply.reply_content }} 
-                            
-                            {% if reply.nickname == user.nickname  %}
-                            <a href="/content/delete/{{ reply.id }}/" >삭제</a>
-
-                            {% elif feed.nickname == user.nickname %}
-                            <a href="/content/delete/{{ reply.id }}/" >삭제</a>
-                            
-                            {% endif %}
-
-                        </div>
-
+                      <div style="margin: 10px 20px;text-align: left;font-size: 14px">
+                          <b>{{ reply.nickname }}</b> {{ reply.reply_content }}
+                      </div>
                       {% endfor %}
                     </div>  
 
                     <div class="comment-wrap">
-
+                        
                     </div>
                     <div id="reply_list_{{ feed.id }}">
                         <div class="input-container">
@@ -518,70 +443,22 @@
                                             placeholder="댓글 달기 ...">          
                                 </div>
                                     <div feed_id="{{ feed.id }}" class="upload_reply"
-                                        style="width: 50px;color: cornflowerblue; font-weight: bold; cursor: pointer"> 
+                                        style="width: 50px;color: cornflowerblue; font-weight: bold; cursor: pointer">
                                               게시
                                     </div> 
                             </div>
                         </div>
                     </div>  
                 </div>           
+                {% else %}
+
+                {% endif %}
                 {% endfor %}
             </div>
         </div>
 
-        <!--오른쪽 내 계정-->
-        <div class="right-profile">
-            <div class="right-wrap">
-                <div class="box" style="width: 70px; height: 70px;">
-                    <img class="profile"
-                    src="{% get_media_prefix %}{{ user.profile_image }}">
-                </div>
-                <div class="profile-user-name">
-                    <div style="font-weight: bold">
-                        {{ user.nickname }}
-                    </div>
-                    <div style="color: gray">
-                        {{ user.name }}
-                    </div>
-                </div>
-            </div>
-            <div class="member-reco">
-                <div>
-                    회원님을 위한 추천
-                </div>
-                <div>
-                    <a href="#">모두보기</a>
-                </div>
-            </div>
-        
 
-            <!--오른쪽 팔로우-->
-            <div class="right-follow">
-                {% for recommend in recommends %}
-                <div class="out-box">
-                    
-                    <div style="display:flex;">
-                        <div class="box" style="width: 35px; height: 35px;">
-                            <img class="profile"
-                                src="{% get_media_prefix %}{{ recommend.profile_image }}">
-                        </div>
-                        <div class="follow-user">
-                            <div>
-                                {{ recommend.recommend_nickname }}
-                            </div>
-                            <div>
-                                {{ recommend.recommend_user }}
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <a class="follow-button" href="#">팔로우</a>
-                    </div>
-                    
-                </div>
-                {% endfor %}
-            </div>
-        </div>
+
 
     <!-- 첫번째 모달 -->
     <div id="first_modal" class="modal_overlay">
@@ -594,7 +471,7 @@
                     새 이미지 업로드
                 </div>
                 <div style="width: 40px; background: transparent">
-                    <span class="modal_close material-icons-outlined" style="cursor: pointer;">close</span>
+                    <span class="modal_close material-icons-outlined">close</span>
                 </div>
             </div>
 
@@ -608,17 +485,15 @@
     <!-- 두번째 모달 -->
     <div id="second_modal" class="modal_overlay">
         <div class="modal_window">
-            <div style="display: flex; flex-direction: row; justify-content: space-between;">
+            <div style="display: flex; flex-direction: row; justify-content: space-between">
                 <div style="width: 40px; background: transparent">
 
                 </div>
                 <div>
                     새 이미지 업로드
                 </div>
-
                 <div style="width: 40px; background: transparent">
-                    <span class="modal_close material-icons-outlined" style="cursor: pointer;">close</span>
-
+                    <span class="modal_close material-icons-outlined">close</span>
                 </div>
             </div>
 
@@ -641,60 +516,8 @@
         </div>
     </div>
 
-    <!-- 게시글 수정, 삭제 모달 -->
-    {% for feed in feeds %}
-    <div id="setting_modal" class="modal_overlay">
-        <div class="modal_window" style="width:400px; height:300px;">
-            <div style="display: flex; flex-direction: column; text-align:center; ">
-                <button id="delete_feed_button" class="setting_button" style="color:red;">삭제</button>
-                <button id="update_feed_button" class="setting_button">수정</button>
-                <button class="setting_button">좋아요 숨기기</button>
-                <button class="setting_button">댓글 기능 해제</button>
-                <button class="setting_button">게시물로 이동</button>
-                <button id="setting_modal_close" class="setting_button">취소</button>
-            </div>
-        </div>
-    </div>
 
-    <div id="delete_feed_modal" class="modal_overlay">
-        <div class="modal_window" style="width:400px; height:200px;">
-            <div style="display: flex; flex-direction: column; text-align:center;">
-                <p><b>게시물을 삭제할까요?</b></p>
-                <p style="color:lightgray">이 게시물을 삭제하시겠어요?</p>
-                <a href="/content/{{feed.id}}/delete/">
-                    <button id="delete_button" class="setting_button" style="color:red;">삭제</button>
-                </a>
-                <button id="delete_modal_close" class="setting_button">취소</button>
-            </div>
-        </div>
-    </div>
 
-    <div id="update_feed_modal" class="modal_overlay">
-        <div class="modal_window" style="width:900px; height:200px;">
-            <div style="display: flex; flex-direction: row; justify-content: space-between">
-                <div style="width: 40px; background: gray">
-                </div>
-                <div>
-                    피드 수정
-                </div>
-                <div style="width: 40px; background: gray">
-                    <span id="update_modal_close" class="material-icons-outlined">close</span>
-                </div>
-            </div>
-            <div style="border-top: solid 1px gray;display: flex; flex-direction: row; margin-top: 10px; justify-content:center; align-items:center;">
-                <div style="border-left: solid 1px gray">
-                    <form action="/content/{{feed.id}}/update/" method="POST">
-                        {% csrf_token %}
-                        <textarea id="update_feed_content" class="form-control" style="width: 800px; height: 100px" rows="5" name="content">{{ feed.content }}</textarea>
-                        <button  id="feed_update_button" type="submit" class="btn btn-primary" style="width: 100px">
-                            수정하기
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    {% endfor %}
 
 
 
@@ -706,10 +529,6 @@
     <!--제이쿼리-->
     <!--이미지파일 올리기-->
     <script>
-        
-
-
-
         $('#nav_bar_add_box').click(function () {
             $('#first.modal').css({
                 display: 'flex',
@@ -802,6 +621,7 @@
             });
         });
 
+
         $(".favorite").click(function (event) {
             let feed_id = event.target.attributes.getNamedItem('feed_id').value;
             let favorite_id = event.target.id;
@@ -809,7 +629,7 @@
             let favorite_text = like_value == false ? 'favorite' : 'favorite_border'
             location.reload()
             $.ajax({
-                url: "/content/like/",
+                url: "/content/like",
                 data: {
                     feed_id: feed_id,
                     favorite_text: favorite_text
@@ -852,13 +672,12 @@
                 },
                 method: "POST",
                 success: function (data) {
-                    
-                    // 오형석 : 댓글 리프레시 없이 바로 다는 것 수정 - 전 코드는 주석처리 함
-                    // $("#reply_list_"+feed_id).append("<div style='margin: 10px 20px; text-align: left; font-size: 14px;''><b>{{ user.nickname }}</b>"+reply_content+"</div> ");
-                    // $("#reply_list_" + feed_id).append("<div style='margin: 0 20px;text-align: left;font-size: 14px'><b>{{ reply_user.nickname }}</b> " + reply_content + "</div>")
-                    location.replace("/main/");
                     console.log("성공");
                     alert("댓글 성공");
+                    // 오형석 : 댓글 리프레시 없이 바로 다는 것 수정 - 전 코드는 주석처리 함
+                    $("#reply_list_"+feed_id).append("<div style='margin: 10px 20px; text-align: left; font-size: 14px;''><b>{{ user.nickname }}</b>"+reply_content+"</div> ");
+                    // $("#reply_list_" + feed_id).append("<div style='margin: 0 20px;text-align: left;font-size: 14px'><b>{{ reply_user.nickname }}</b> " + reply_content + "</div>")
+                    // location.replace("/main/");
 
                 },
                 error: function (request, status, error) {
@@ -879,19 +698,13 @@
             $('#second_modal').css({
                 display: 'none'
             });
-            
-            $(document.body).css({
-                overflow: 'auto'
-            });
         });
 
         let files;
 
         $('#nav_bar_add_box').click(function () {
             $('#first_modal').css({
-                display: 'flex',
-                "top": (($(window).height() - $("#first_modal").outerHeight()) / 2 + $(window).scrollTop()) + "px",
-                "left": (($(window).width() - $("#first_modal").outerWidth()) / 2 + $(window).scrollLeft()) + "px"
+                display: 'flex'
             });
 
             $(document.body).css({
@@ -988,70 +801,6 @@
             }
 
         }
-
-        // 게시글 수정, 삭제 모달 열기
-        $('.setting_buttons').click(function () {
-            $('#setting_modal').css({
-                display: 'flex'
-            });
-            $(document.body).css({
-                overflow: 'hidden'
-            })
-        })
-    
-        // 게시글 수정, 삭제 모달 닫기
-        $("#setting_modal_close").click(function () {
-            $('#setting_modal').css({
-                display: 'none'
-            });
-        });
-    
-        // 게시글 삭제 모달 열기
-        $('#delete_feed_button').click(function () {
-            $('#setting_modal').css({
-                display: 'none'
-            });
-            $('#delete_feed_modal').css({
-                display: 'flex'
-            });
-            $(document.body).css({
-                overflow: 'hidden'
-            })
-        })
-    
-        // 게시글 삭제 모달 닫기
-        $("#delete_modal_close").click(function () {
-            $('#delete_feed_modal').css({
-                display: 'none'
-            });
-            $('#setting_modal').css({
-                display: 'none'
-            });
-        });
-    
-        // 게시글 수정 모달 열기
-        $('#update_feed_button').click(function () {
-            $('#setting_modal').css({
-                display: 'none'
-            });
-            $('#update_feed_modal').css({
-                display: 'flex'
-            });
-            $(document.body).css({
-                overflow: 'hidden'
-            });
-        })
-    
-        // 게시글 수정 모달 닫기
-        $("#update_modal_close").click(function () {
-            $('#update_feed_modal').css({
-                display: 'none'
-            });
-            $('#setting_modal').css({
-                display: 'none'
-            });
-        });
-
     </script>
 
 
