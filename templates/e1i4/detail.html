@@ -87,9 +87,9 @@
         .feed_box {
             background-color: white;
             width: 470px;
-            margin-bottom: 12px;
             border: solid 1px rgb(219, 219, 219);
             border-radius: 8px;
+            max-height:530px;
         }
 
         .out-box {
@@ -173,7 +173,8 @@
             flex-direction: row;
             text-align: center;
             justify-content: center;
-            background-color: rgb(247, 247, 247);
+            margin:auto;
+            height:800px;
 
         }
 
@@ -211,6 +212,7 @@
         .input-container {
             border-top: 1px solid rgb(239, 239, 239);
             padding: 4px 16px 4px 12px;
+    
         }
 
         .input-container>input {
@@ -358,19 +360,25 @@
             display: inline-block;
             cursor: pointer;
         }
+        .feed_reply {
+            max-height:530px;
+            height: 430px;
+            overflow:auto;
+        }
 
     </style>                
 </head>
 
-<body>
+<body style="background-color: rgb(87, 87, 87);">
 
 
     <div class="main-container">
-        <div>
+        <div style="margin:auto">
             <div style="margin: 10px 32px;">
                 {% for feed in feeds %}
                 {% if feed.id == pk %}
                 <!--게시글 1-->
+            <div style="display: flex;">    
                 <div class="feed_box">
                     <div class="profile-wrap">
                         <div class="box">
@@ -384,18 +392,20 @@
                     <div class="posting-wrap-img">
                         <img class="posting-img" src="{% get_media_prefix %}{{ feed.image }}">
                     </div>
+                </div><!--새로운 div-->
 
+                <div style="background-color:white; border:solid 1px rgb(219,219,219); border-radius:8px; max-height:530px;"><!--새로운 div-->
                     <div class="icon-list">
-                        <div>
+                        <!--<div>
                             {% if feed.is_liked %}
                             <div id="favorite_{{ feed.id }}" feed_id="{{ feed.id }}" class="favorite like"></div>
                             {% else %}
                             <div id="favorite_{{ feed.id }}" feed_id="{{ feed.id }}" class="favorite unlike"></div>
                             {% endif %}
                             
-                        </div>
+                        </div>-->
 
-                        <div>
+                        <!--<div>
                             <span id="bookmark_{{ feed.id }}" feed_id="{{ feed.id }}"
                                 class="bookmark material-icons-outlined" style="cursor: pointer">
                                 {% if feed.is_marked %}
@@ -404,19 +414,19 @@
                                 bookmark_border
                                 {% endif %}
                             </span>
-                        </div>
+                        </div>-->
                     </div>
 
-                    <div class="like-wrap">
+                    <!--<div class="like-wrap">
                         좋아요 {{ feed.like_count }}개
-                    </div>
+                    </div>-->
 
                     <div style="margin: 0 20px;text-align: left;font-size: 16px"> 
                       <b>{{ feed.nickname }}</b> 
                       {{ feed.content}}
                     </div>
                     
-                    <div id="reply_list_{{ feed.id }}">
+                    <div class="feed_reply" id="reply_list_{{ feed.id }}">
                       {% for reply in feed.reply_list %}
                       <div style="margin: 10px 20px;text-align: left;font-size: 14px">
                           <b>{{ reply.nickname }}</b> {{ reply.reply_content }}
@@ -445,11 +455,14 @@
                                     </div> 
                             </div>
                         </div>
-                    </div>  
-                </div>           
+                    </div>
+                </div><!--새로운 div--> 
+            </div><!--새로운div--> 
+                {% comment %} </div>            {% endcomment %}
                 {% else %}
-
+                
                 {% endif %}
+                
                 {% endfor %}
             </div>
         </div>
