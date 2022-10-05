@@ -1,5 +1,5 @@
 from django.urls import path
-from content.views import UploadFeed, Profile, Main, UploadReply, ToggleLike, ToggleBookmark, delete_feed, update_feed
+from content.views import UploadFeed, Profile, Main, UploadReply, ToggleLike, ToggleBookmark, delete_feed, delete_reply, update_feed, delete_reply
 #1번 방식
 from content import views
 
