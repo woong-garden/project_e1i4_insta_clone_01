@@ -1,11 +1,12 @@
 from uuid import uuid4
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from content.models import Feed, Reply, Like, Bookmark
 from user.models import User
 import os
 from e1i4.settings import MEDIA_ROOT
+from django.views.decorators.csrf import csrf_exempt
 
 
 class Main(APIView):
@@ -150,3 +151,11 @@ class ToggleBookmark(APIView):
             Bookmark.objects.create(feed_id=feed_id, is_marked=is_marked, email=email)
 
         return Response(status=200)
+
+
+@ csrf_exempt
+def delete_feed(request, id):
+    feed = Feed.objects.get(id=id)
+    feed.delete()
+    return redirect('/main/')
+    
