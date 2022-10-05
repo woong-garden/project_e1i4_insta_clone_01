@@ -665,13 +665,13 @@
                     
                 </div>
                 <div style="border-left: solid 1px gray">
-                    <div>
-                        <textarea id="update_feed_content" class="form-control" style="width: 276px; height: 400px"
-                        id="exampleFormControlTextarea1" rows="5">{{ feed.content }}</textarea>
-                    </div>
-                    <button onclick="location.href='/delete'" id="feed_update_button" type="button" class="btn btn-primary" style="width: 100%">
-                        공유하기
-                    </button>
+                    <form action="/content/{{feed.id}}/update/" method="POST">
+                        {% csrf_token %}
+                        <textarea id="update_feed_content" class="form-control" style="width: 276px; height: 400px" rows="5" name="content">{{ feed.content }}</textarea>
+                        <button  id="feed_update_button" type="submit" class="btn btn-primary" style="width: 100%">
+                            공유하기
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>

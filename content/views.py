@@ -158,4 +158,12 @@ def delete_feed(request, id):
     feed = Feed.objects.get(id=id)
     feed.delete()
     return redirect('/main/')
+
+@ csrf_exempt
+def update_feed(request, id):
+    feed = Feed.objects.get(id=id)
     
+    feed.content = request.POST.get('content')
+
+    feed.save()
+    return redirect('/main/')
