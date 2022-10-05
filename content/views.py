@@ -152,13 +152,14 @@ class ToggleBookmark(APIView):
 
         return Response(status=200)
 
-
+# 게시글 삭제 함수
 @ csrf_exempt
 def delete_feed(request, id):
     feed = Feed.objects.get(id=id)
     feed.delete()
     return redirect('/main/')
 
+# 게시글 수정 함수
 @ csrf_exempt
 def update_feed(request, id):
     feed = Feed.objects.get(id=id)

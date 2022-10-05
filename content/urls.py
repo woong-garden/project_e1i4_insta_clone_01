@@ -8,7 +8,7 @@ urlpatterns = [
     path('bookmark', ToggleBookmark.as_view()),
     path('profile/', Profile.as_view()),
     path('main/', Main.as_view()),
-    path('<int:id>/delete/', delete_feed),
-    path('<int:id>/update/', update_feed),
+    path('<int:id>/delete/', delete_feed), # 게시글 삭제
+    path('<int:id>/update/', update_feed), # 게시글 수정
 ]
 

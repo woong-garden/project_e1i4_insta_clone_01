@@ -427,9 +427,12 @@
                                 {{ feed.nickname }}
                             </div>
                         </div>
+                        <!-- 게시글 삭제, 수정 버튼 -->
+                        {% if feed.nickname == user.nickname %}
                         <div>
                             <a class="setting_buttons"><img src="{%static 'icons/more_horiz.png' %}" /></a>
                         </div>
+                        {% endif %}
                     </div>
                     
                     <div class="posting-wrap-img">
@@ -612,10 +615,9 @@
         </div>
     </div>
 
-    <!-- 게시글 더보기 모달 -->
+    <!-- 게시글 수정, 삭제 모달 -->
     {% for feed in feeds %}
     <div id="setting_modal" class="modal_overlay">
-        {% if feed.nickname == user.nickname %}
         <div class="modal_window" style="width:400px; height:300px;">
             <div style="display: flex; flex-direction: column; text-align:center; ">
                 <button id="delete_feed_button" class="setting_button" style="color:red;">삭제</button>
@@ -625,13 +627,6 @@
                 <button class="setting_button">게시물로 이동</button>
                 <button id="setting_modal_close" class="setting_button">취소</button>
             </div>
-            {% else %}
-            <div class="modal_window" style="width:400px; height:100px;">
-                <div style="display: flex; flex-direction: column; text-align:center;">
-                    <button class="setting_button">게시물로 이동</button>
-                    <button id="setting_modal_close" class="setting_button">취소</button>
-                </div>
-            {% endif %}
         </div>
     </div>
 
@@ -649,27 +644,24 @@
     </div>
 
     <div id="update_feed_modal" class="modal_overlay">
-        <div class="modal_window">
+        <div class="modal_window" style="width:900px; height:200px;">
             <div style="display: flex; flex-direction: row; justify-content: space-between">
                 <div style="width: 40px; background: gray">
                 </div>
                 <div>
-                    새 이미지 업로드
+                    피드 수정
                 </div>
                 <div style="width: 40px; background: gray">
                     <span id="update_modal_close" class="material-icons-outlined">close</span>
                 </div>
             </div>
-            <div style="border-top: solid 1px gray;display: flex; flex-direction: row;margin-top: 10px">
-                <div id="img_update_space" style="width: 500px; height: 540px;">
-                    
-                </div>
+            <div style="border-top: solid 1px gray;display: flex; flex-direction: row; margin-top: 10px; justify-content:center; align-items:center;">
                 <div style="border-left: solid 1px gray">
                     <form action="/content/{{feed.id}}/update/" method="POST">
                         {% csrf_token %}
-                        <textarea id="update_feed_content" class="form-control" style="width: 276px; height: 400px" rows="5" name="content">{{ feed.content }}</textarea>
-                        <button  id="feed_update_button" type="submit" class="btn btn-primary" style="width: 100%">
-                            공유하기
+                        <textarea id="update_feed_content" class="form-control" style="width: 800px; height: 100px" rows="5" name="content">{{ feed.content }}</textarea>
+                        <button  id="feed_update_button" type="submit" class="btn btn-primary" style="width: 100px">
+                            수정하기
                         </button>
                     </form>
                 </div>
@@ -958,6 +950,7 @@
 
         }
 
+        // 게시글 수정, 삭제 모달 열기
         $('.setting_buttons').click(function () {
             $('#setting_modal').css({
                 display: 'flex'
@@ -967,12 +960,14 @@
             })
         })
     
+        // 게시글 수정, 삭제 모달 닫기
         $("#setting_modal_close").click(function () {
             $('#setting_modal').css({
                 display: 'none'
             });
         });
     
+        // 게시글 삭제 모달 열기
         $('#delete_feed_button').click(function () {
             $('#setting_modal').css({
                 display: 'none'
@@ -985,6 +980,7 @@
             })
         })
     
+        // 게시글 삭제 모달 닫기
         $("#delete_modal_close").click(function () {
             $('#delete_feed_modal').css({
                 display: 'none'
@@ -994,6 +990,7 @@
             });
         });
     
+        // 게시글 수정 모달 열기
         $('#update_feed_button').click(function () {
             $('#setting_modal').css({
                 display: 'none'
@@ -1006,6 +1003,7 @@
             });
         })
     
+        // 게시글 수정 모달 닫기
         $("#update_modal_close").click(function () {
             $('#update_feed_modal').css({
                 display: 'none'
