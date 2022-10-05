@@ -23,6 +23,18 @@ class Main(APIView):
         if user is None:
             return render(request, "user/login.html")
 
+        '''요기서부터 구현'''
+        # 오형석 - 회원님을 위한 추천에 유저리스트 구현
+        # 추천유저는 여기
+        recommend_user_object_list = User.objects.all()
+        recommend_user_list = []
+        for user in recommend_user_object_list:
+            recommend_user = User.objects.filter(email=user.email).first()
+            recommend_user_list.append(dict(profile_image=recommend_user.profile_image,
+                                        recommend_nickname=recommend_user.nickname,
+                                        recommend_user=recommend_user))
+        # 아래는 유저리스트 추가만
+
         feed_object_list = Feed.objects.all().order_by('-id')  # select  * from content_feed;
         feed_list = []
 
@@ -54,8 +66,16 @@ class Main(APIView):
         
         
 
-        return render(request, "e1i4/main.html", context=dict(feeds=feed_list, user=user))
+        return render(request, "e1i4/main.html", context=dict(feeds=feed_list, user=user, recommends=recommend_user_list)) # 오형석 - 유저리스트 추가
+        '''요기까지 바뀐점 있음'''
 
+    # def detail(self, request, pk):
+    #     content_detail = Feed.objects.get(pk=pk)
+    #     context = {
+    #         'content':content_detail,
+    #     }
+
+    #     return render(request, "e1i4/main.html", context) 
 
 class UploadFeed(APIView):
     def post(self, request):
@@ -162,3 +182,53 @@ class ToggleBookmark(APIView):
             Bookmark.objects.create(feed_id=feed_id, is_marked=is_marked, email=email)
 
         return Response(status=200)
+
+
+# 1번 방식
+# class Detail(APIView):
+def detail(request, pk):
+    content_detail = Feed.objects.get(pk=pk)
+    # context = {
+    #     'content':content_detail,
+    # }
+    # feed_id = request.data.get('feed_id', None)
+    email = request.session.get('email', None)
+
+    if email is None:
+        return render(request, "user/login.html")
+
+    user = User.objects.filter(email=email).first()
+
+    if user is None:
+        return render(request, "user/login.html")
+
+    feed_object_list = Feed.objects.all().order_by('-id')  # select  * from content_feed;
+    feed_list = []
+
+    for feed in feed_object_list:
+        feed_user = User.objects.filter(email=feed.email).first()
+        reply_object_list = Reply.objects.filter(feed_id=feed.id)
+        reply_list = []
+        for reply in reply_object_list:
+            reply_user = User.objects.filter(email=reply.email).first()
+            reply_list.append(dict(reply_content=reply.reply_content,
+                                    nickname=reply_user.nickname))
+                                    
+        like_count=Like.objects.filter(feed_id=feed.id, is_like=True).count()
+        is_liked=Like.objects.filter(feed_id=feed.id, email=email, is_like=True).exists()
+        is_marked=Bookmark.objects.filter(feed_id=feed.id, email=email, is_marked=True).exists()
+        feed_list.append(dict(content_detail=content_detail,
+                                id=feed.id,
+                                image=feed.image,
+                                content=feed.content,
+                                like_count=like_count,
+                                profile_image=feed_user.profile_image,
+                                nickname=feed_user.nickname,
+                                reply_list=reply_list,
+                                is_liked=is_liked,
+                                is_marked=is_marked
+                                ))
+
+
+    return render(request, "e1i4/detail.html", context=dict(feeds=feed_list, user=user, pk=pk))
+
