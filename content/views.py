@@ -1,15 +1,16 @@
 from uuid import uuid4
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from content.models import Feed, Reply, Like, Bookmark
 from user.models import User
 import os
 from e1i4.settings import MEDIA_ROOT
+from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.urls import reverse
-from django.views.decorators.csrf import csrf_exempt
+
 
 class Main(APIView):
     def get(self, request):
@@ -184,6 +185,24 @@ class ToggleBookmark(APIView):
         return Response(status=200)
 
 
+# 게시글 삭제 함수
+@ csrf_exempt
+def delete_feed(request, id):
+    feed = Feed.objects.get(id=id)
+    feed.delete()
+    return redirect('/main/')
+
+# 게시글 수정 함수
+@ csrf_exempt
+def update_feed(request, id):
+    feed = Feed.objects.get(id=id)
+    
+    feed.content = request.POST.get('content')
+
+    feed.save()
+    return redirect('/main/')
+
+
 # 1번 방식
 # class Detail(APIView):
 def detail(request, pk):
@@ -231,4 +250,3 @@ def detail(request, pk):
 
 
     return render(request, "e1i4/detail.html", context=dict(feeds=feed_list, user=user, pk=pk))
-
