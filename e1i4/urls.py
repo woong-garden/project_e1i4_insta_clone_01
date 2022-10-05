@@ -20,6 +20,7 @@ from content.views import Main, UploadFeed
 from .settings import MEDIA_URL, MEDIA_ROOT
 from django.conf.urls.static import static
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('main/', Main.as_view()),

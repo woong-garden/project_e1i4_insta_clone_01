@@ -231,4 +231,3 @@ def detail(request, pk):
 
 
     return render(request, "e1i4/detail.html", context=dict(feeds=feed_list, user=user, pk=pk))
-
