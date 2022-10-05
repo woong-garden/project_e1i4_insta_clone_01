@@ -777,12 +777,13 @@
                 },
                 method: "POST",
                 success: function (data) {
+                    
+                    // 오형석 : 댓글 리프레시 없이 바로 다는 것 수정 - 전 코드는 주석처리 함
+                    // $("#reply_list_"+feed_id).append("<div style='margin: 10px 20px; text-align: left; font-size: 14px;''><b>{{ user.nickname }}</b>"+reply_content+"</div> ");
+                    // $("#reply_list_" + feed_id).append("<div style='margin: 0 20px;text-align: left;font-size: 14px'><b>{{ reply_user.nickname }}</b> " + reply_content + "</div>")
+                    location.replace("/main/");
                     console.log("성공");
                     alert("댓글 성공");
-                    // 오형석 : 댓글 리프레시 없이 바로 다는 것 수정 - 전 코드는 주석처리 함
-                    $("#reply_list_"+feed_id).append("<div style='margin: 10px 20px; text-align: left; font-size: 14px;''><b>{{ user.nickname }}</b>"+reply_content+"</div> ");
-                    // $("#reply_list_" + feed_id).append("<div style='margin: 0 20px;text-align: left;font-size: 14px'><b>{{ reply_user.nickname }}</b> " + reply_content + "</div>")
-                    // location.replace("/main/");
 
                 },
                 error: function (request, status, error) {
