@@ -25,3 +25,5 @@ class Bookmark(models.Model):
     email = models.EmailField(default='')
     is_marked = models.BooleanField(default=True)
 
+class deleteReply(models.Model):
+    feed_id = models.IntegerField(default=0)

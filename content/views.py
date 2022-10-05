@@ -6,7 +6,10 @@ from content.models import Feed, Reply, Like, Bookmark
 from user.models import User
 import os
 from e1i4.settings import MEDIA_ROOT
-
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect
+from django.urls import reverse
+from django.views.decorators.csrf import csrf_exempt
 
 class Main(APIView):
     def get(self, request):
@@ -30,7 +33,9 @@ class Main(APIView):
             for reply in reply_object_list:
                 reply_user = User.objects.filter(email=reply.email).first()
                 reply_list.append(dict(reply_content=reply.reply_content,
-                                       nickname=reply_user.nickname))
+                                       nickname=reply_user.nickname,
+                                       id=reply.id
+                                       ))
                                        
             like_count=Like.objects.filter(feed_id=feed.id, is_like=True).count()
             is_liked=Like.objects.filter(feed_id=feed.id, email=email, is_like=True).exists()
@@ -106,6 +111,13 @@ class UploadReply(APIView):
         Reply.objects.create(feed_id=feed_id, reply_content=reply_content, email=email)
 
         return Response(status=200)
+
+@csrf_exempt
+def delete_reply(request, id):
+    reply = Reply.objects.get(id=id)
+    reply.delete()
+
+    return redirect('/main/')
 
 
 class ToggleLike(APIView):
