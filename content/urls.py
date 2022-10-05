@@ -18,4 +18,3 @@ urlpatterns = [
     
     path('delete/<int:id>/', delete_reply, name='delete'),
 ]
-

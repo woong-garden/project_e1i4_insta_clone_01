@@ -21,7 +21,7 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
 
-    <title>Hello, world!</title>
+    <title>e1i4gram</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300&display=swap" rel="stylesheet">
 
@@ -29,6 +29,9 @@
     <link
         href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
         rel="stylesheet">
+
+    <!--타이틀로고-->
+    <link rel="shortcut icon" type="image/x-icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/1200px-Instagram_logo_2022.svg.png">
 
     <!--css링크-->
     {% comment %} <link rel="stylesheet" href="{% static 'style.css' %}"> {% endcomment %}
@@ -358,6 +361,9 @@
             cursor: pointer;
         }
 
+
+
+            
     </style>                
 </head>
 
@@ -433,12 +439,14 @@
                             {% else %}
                             <div id="favorite_{{ feed.id }}" feed_id="{{ feed.id }}" class="favorite unlike"></div>
                             {% endif %}
+
                             <!-- 형석 피드 수정 시도 -->
                             <a href="/content/{{ feed.id }}"><span id="detail_{{ feed.id }}" feed_id="{{ feed.id }}"
                             class="material-icons-outlined" style="cursor: pointer">
                                 mode_comment
                             </span></a>
                             <!-- <a class="icon-padding"><img src="{%static 'icons/bubble_empty.png' %}" /></a> -->
+
                         </div>
 
                         <div>
@@ -452,10 +460,11 @@
                             </span>
                         </div>
                     </div>
-
+                        
                     <div class="like-wrap">
                         좋아요 {{ feed.like_count }}개
                     </div>
+
 
                     <div style="margin: 0 20px;text-align: left;font-size: 16px"> 
                       <b>{{ feed.nickname }}</b> {{ feed.content}} 
@@ -594,8 +603,10 @@
                 <div>
                     새 이미지 업로드
                 </div>
-                <div style="width: 40px; background: transparent ">
-                    <span class="modal_close material-icons-outlined">close</span>
+
+                <div style="width: 40px; background: transparent">
+                    <span class="modal_close material-icons-outlined" style="cursor: pointer;">close</span>
+
                 </div>
             </div>
 
@@ -814,7 +825,9 @@
 
         $('#nav_bar_add_box').click(function () {
             $('#first_modal').css({
-                display: 'flex'
+                display: 'flex',
+                "top": (($(window).height() - $("#first_modal").outerHeight()) / 2 + $(window).scrollTop()) + "px",
+                "left": (($(window).width() - $("#first_modal").outerWidth()) / 2 + $(window).scrollLeft()) + "px"
             });
 
             $(document.body).css({
