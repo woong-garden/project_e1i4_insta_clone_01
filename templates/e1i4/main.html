@@ -464,6 +464,9 @@
                             
                             {% if reply.nickname == user.nickname  %}
                             <a href="/content/delete/{{ reply.id }}/" >삭제</a>
+
+                            {% elif feed.nickname == user.nickname %}
+                            <a href="/content/delete/{{ reply.id }}/" >삭제</a>
                             
                             {% endif %}
 
