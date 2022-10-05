@@ -734,7 +734,7 @@
             let favorite_text = like_value == false ? 'favorite' : 'favorite_border'
             location.reload()
             $.ajax({
-                url: "/content/like",
+                url: "/content/like/",
                 data: {
                     feed_id: feed_id,
                     favorite_text: favorite_text
