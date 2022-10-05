@@ -4,6 +4,7 @@ from content.views import UploadFeed, Profile, Main, UploadReply, ToggleLike, To
 from content import views
 
 urlpatterns = [
+    
     path('upload/', UploadFeed.as_view()),
     path('reply/', UploadReply.as_view()),
     path('like/', ToggleLike.as_view()),

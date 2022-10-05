@@ -11,6 +11,19 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.urls import reverse
 
+def home(request):
+    email = request.session.get('email', None)
+
+    if email is None:
+        return render(request, "user/login.html")
+
+    user = User.objects.filter(email=email).first()
+
+    if user is None:
+        return render(request, "user/login.html")
+
+    return render(request, "main.html") # 오형석 - 유저리스트 추가
+    
 
 class Main(APIView):
     def get(self, request):
