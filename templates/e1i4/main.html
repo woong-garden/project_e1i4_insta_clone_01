@@ -100,7 +100,7 @@
             flex-direction: row;
             justify-content: space-between;
             align-items: center;
-            margin: 5px 0px 10px 15px;
+            padding: 8px 16px;
         }
 
 
@@ -127,7 +127,7 @@
             border-radius: 10px;
             border: 1px solid rgba(255, 255, 255, 0.18);
             width: 855px;
-            height: 898px;
+            height: 600px;
             position: relative;
             padding: 10px;
         }
@@ -194,7 +194,7 @@
             display: flex;
             flex-direction: row;
             justify-content: space-between;
-            margin: 8px 15px 0px 5px;
+            margin: 12px 15px 0px 12px;
         }
 
         .like-wrap {
@@ -232,14 +232,14 @@
             display: flex;
             flex-direction: row;
             align-items: center;
-            margin: 10px 0px 10px 0px;
+            margin: 16px 0px 10px 0px;
 
         }
 
         .post-user-name {
             font-size: 14px;
             font-weight: bold;
-            margin: 0px 0px 0px 10px;
+            margin: 10px 0px 0px 10px;
         }
 
         .profile-user-name {
@@ -260,6 +260,8 @@
             display: flex;
             flex-direction: row;
             justify-content: space-between;
+            margin-botton: 10px;
+            padding:4px 16px;
         }
 
         .member-reco>div:first-child {
@@ -421,7 +423,7 @@
 
     <div class="main-container">
         <div>
-            <div style="margin: 10px 32px;">
+            <div style="margin: 16px 32px;">
                 {% for feed in feeds %}
                 <!--게시글 1-->
                 <div class="feed_box">
@@ -437,7 +439,7 @@
                         <!-- 게시글 삭제, 수정 버튼 -->
                         {% if feed.nickname == user.nickname %}
                         <div>
-                            <a class="setting_buttons"><img src="{%static 'icons/more_horiz.png' %}" /></a>
+                            <a class="setting_buttons"><img style="padding:8px;" src="{%static 'icons/dot.png' %}" /></a>
                         </div>
                         {% endif %}
                     </div>
@@ -496,10 +498,10 @@
                             <b>{{ reply.nickname }}</b> {{ reply.reply_content }} 
                             
                             {% if reply.nickname == user.nickname  %}
-                            <a href="/content/delete/{{ reply.id }}/" >삭제</a>
+                            <a href="/content/delete/{{ reply.id }}/" style="float:right; color:red; text-decoration-line: none;">삭제</a>
 
                             {% elif feed.nickname == user.nickname %}
-                            <a href="/content/delete/{{ reply.id }}/" >삭제</a>
+                            <a href="/content/delete/{{ reply.id }}/" style="float:right; color:red; text-decoration-line: none;">삭제</a>
                             
                             {% endif %}
 
@@ -538,7 +540,7 @@
         <!--오른쪽 내 계정-->
         <div class="right-profile">
             <div class="right-wrap">
-                <div class="box" style="width: 70px; height: 70px;">
+                <div class="box" style="width: 56px; height: 56px;">
                     <img class="profile"
                     src="{% get_media_prefix %}{{ user.profile_image }}">
                 </div>
@@ -605,7 +607,7 @@
             </div>
 
             <div class="img_upload_space"
-                style="border-top: solid 1px gray;width: 778px; height: 540px;margin-top: 10px">
+                style="border-top:solid 1px rgb(219, 219, 219); width: 832px; height: 540px;margin-top: 10px">
 
             </div>
         </div>
@@ -614,7 +616,7 @@
     <!-- 두번째 모달 -->
     <div id="second_modal" class="modal_overlay">
         <div class="modal_window">
-            <div style="display: flex; flex-direction: row; justify-content: space-between;">
+            <div style="display: flex; flex-direction: row; justify-content: space-between; padding-bottom:12px; border-bottom: solid 1px rgb(219, 219, 219);">
                 <div style="width: 40px; background: transparent">
 
                 </div>
@@ -628,13 +630,14 @@
                 </div>
             </div>
 
-            <div style="border-top: solid 1px gray;display: flex; flex-direction: row;margin-top: 10px">
+            <div style=" display: flex; flex-direction: row;margin-top: 10px">
                 <div class="img_upload_space" style="width: 500px; height: 540px;">
 
                 </div>
-                <div style="border-left: solid 1px gray">
+                <div>
                     <div>
-                        <textarea id="input_feed_content" class="form-control" style="width: 276px; height: 400px"
+                        <textarea id="input_feed_content" class="form-control" style="width: 330px; height: 463px;
+                        margin-top: 20px;"
                             id="exampleFormControlTextarea1" rows="5"></textarea>
                     </div>
                     <button id="feed_create_button" type="button" class="btn btn-primary" style="width: 100%">
@@ -735,7 +738,7 @@
             e.preventDefault();
             if (e.type == "dragover") {
                 $(e.target).css({
-                    "background-color": "black",
+                    "background-color": "gray",
                     "outline-offset": "-20px"
                 });
             } else {
@@ -1010,6 +1013,9 @@
             $('#setting_modal').css({
                 display: 'none'
             });
+            $(document.body).css({
+                overflow: 'auto'
+            })
         });
     
         // 게시글 삭제 모달 열기
