@@ -1,9 +1,9 @@
-# e1i4 insta clone coding project practice repo #  
+# e1i4 insta clone coding project repo #  
 <br/> 
 
 ## 🏠 소개
 
-인스타 클론 코딩 팀 프로젝트를 위한 연습용 레포
+인스타 클론 코딩 팀 프로젝트
 
 인스타그램을 django를 활용하여 비슷하게 구현하는 프로젝트
 
