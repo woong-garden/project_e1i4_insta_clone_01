@@ -42,8 +42,8 @@ class Main(APIView):
         # 추천유저는 여기
         recommend_user_object_list = User.objects.all()
         recommend_user_list = []
-        for user in recommend_user_object_list:
-            recommend_user = User.objects.filter(email=user.email).first()
+        for reco_user in recommend_user_object_list:
+            recommend_user = User.objects.filter(email=reco_user.email).first()
             recommend_user_list.append(dict(profile_image=recommend_user.profile_image,
                                         recommend_nickname=recommend_user.nickname,
                                         recommend_user=recommend_user))
@@ -78,10 +78,15 @@ class Main(APIView):
                                   ))
 
         
-        
-
         return render(request, "e1i4/main.html", context=dict(feeds=feed_list, user=user, recommends=recommend_user_list)) # 오형석 - 유저리스트 추가
         '''요기까지 바뀐점 있음'''
+
+
+    def detail(self, id):
+        feed = Feed.objects.get(id=id)
+        feed.delete()
+        return redirect('detail.html')
+
 
     # def detail(self, request, pk):
     #     content_detail = Feed.objects.get(pk=pk)
