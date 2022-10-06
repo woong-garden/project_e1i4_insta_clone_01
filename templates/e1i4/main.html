@@ -447,7 +447,7 @@
                     <div class="posting-wrap-img">
                         <img class="posting-img" src="{% get_media_prefix %}{{ feed.image }}">
                     </div>
-
+                    
                     <div class="icon-list">
                         <div>
                             {% if feed.is_liked %}
@@ -457,14 +457,14 @@
                             {% endif %}
 
                             <!-- 형석 피드 수정 시도 -->
-                            <!--<a href="/content/{{ feed.id }}"><span id="detail_{{ feed.id }}" feed_id="{{ feed.id }}"
+                            <!-- <a href="/content/{{ feed.id }}"><span id="detail_{{ feed.id }}" feed_id="{{ feed.id }}"
                             class="material-icons-outlined" style="cursor: pointer">
                                 mode_comment
-                            </span></a>-->
+                            </span></a> -->
                             <!--웅주 피드 아이콘 수정-->
-                                <a href="/content/{{ feed.id }}"><span id="detail_{{ feed.id }}" feed_id="{{ feed.id }}"
-                                    <a class="icon-padding"><img src="{%static 'icons/bubble_empty.png' %}" /></a>
-                                </span></a>
+                                <a class="icon-padding" href="/content/{{ feed.id }}"><span id="detail_{{ feed.id }}" feed_id="{{ feed.id }}">
+                                    <img src="{%static 'icons/bubble_empty.png' %}" /></a>
+                                </span>
                             <!-- <a class="icon-padding"><img src="{%static 'icons/bubble_empty.png' %}" /></a> -->
 
                         </div>

@@ -370,8 +370,7 @@
 </head>
 
 <body style="background-color: rgb(87, 87, 87);">
-
-
+    <a href="/main/"><span class="modal_close material-icons-outlined" style="color:white; cursor: pointer; margin-left:1900px;">close</span></a>
     <div class="main-container">
         <div style="margin:auto">
             <div style="margin: 10px 32px;">
@@ -421,9 +420,9 @@
                         좋아요 {{ feed.like_count }}개
                     </div>-->
 
-                    <div style="margin: 0 20px;text-align: left;font-size: 16px"> 
-                      <b>{{ feed.nickname }}</b> 
-                      {{ feed.content}}
+                    <div style="margin: 0 20px;text-align: left;font-size: 16px; flex-direction:row; display: 'flex'; justify-content: space-between;"> 
+                      <div><b>{{ feed.nickname }}</b> {{ feed.content}}</div>
+                      
                     </div>
                     
                     <div class="feed_reply" id="reply_list_{{ feed.id }}">
