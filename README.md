@@ -25,13 +25,6 @@
 * __화면기획서(Wireframe)__ [상세보기](https://www.figma.com/proto/kPn3gSrv4c8r1tIW7zXEZY/e1i4_instaclone_wireframe_v1.0?node-id=5%3A208&scaling=min-zoom&page-id=0%3A1&starting-point-node-id=5%3A208)
 
 
-* __API(Application Programming Interface)__
-![ex_screenshot](./img/api1.PNG)
-![ex_screenshot](./img/api2.PNG)
-![ex_screenshot](./img/api3.PNG)
-![ex_screenshot](./img/api4.PNG)
-![ex_screenshot](./img/api5.PNG)
-![ex_screenshot](./img/api6.PNG)
 
 <br/> 
 
