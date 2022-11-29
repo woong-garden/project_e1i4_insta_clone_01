@@ -28,6 +28,13 @@
 <img src="https://user-images.githubusercontent.com/6766202/193394013-62128eeb-6cf9-4e2c-94bf-5e6fcbbe6b7c.png">
 
 * __API(Application Programming Interface)__ [상세보기](https://docs.google.com/spreadsheets/d/1MLNpDRrXkBEfHgwunWxZxYNU6JZDrj47iCOTlf0Tf5s/edit?usp=sharing)  
+![ex_screenshot](./img/api1.PNG)
+![ex_screenshot](./img/api2.PNG)
+![ex_screenshot](./img/api3.PNG)
+![ex_screenshot](./img/api4.PNG)
+![ex_screenshot](./img/api5.PNG)
+![ex_screenshot](./img/api6.PNG)
+
 <br/> 
 
 
