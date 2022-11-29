@@ -17,13 +17,21 @@
 <br/> 
 
 ## 🧙 멤버구성
-[고은혜](https://github.com/gracegoh924), [김남훈](https://github.com/nhkmi1001), [나웅주](https://github.com/woong-garden), [오형석](https://github.com/auberr), [전다솔](https://github.com/0sol0)
+백엔드
+[고은혜](https://github.com/gracegoh924), 
+[김남훈](https://github.com/nhkmi1001), 
+[오형석](https://github.com/auberr), 
+[전다솔](https://github.com/0sol0)
+
+
+프론트
+[나웅주](https://github.com/woong-garden)
 <br/> 
 
 ## 📝 공통 문서
 
-* __화면기획서(Wireframe)__ [상세보기](https://www.figma.com/proto/kPn3gSrv4c8r1tIW7zXEZY/e1i4_instaclone_wireframe_v1.0?node-id=5%3A208&scaling=min-zoom&page-id=0%3A1&starting-point-node-id=5%3A208)
-
+* __화면기획서(Wireframe)__ 
+![ex_screenshot](./img/api_1.PNG)
 
 
 <br/> 
