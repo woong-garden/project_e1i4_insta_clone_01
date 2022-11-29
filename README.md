@@ -9,7 +9,7 @@
 
 서비스의 목적 : SNS 서비스인 인스타그램의 기능을 최대한 비슷하게 구현  
 
-[서비스 시연 영상](https://youtu.be/e8iRvcSg-mA)
+[서비스 시연 영상](https://woong-garden.tistory.com/entry/2-%EC%83%88%EC%8B%B9%EC%9D%B4%EC%9D%98-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-Django-%EC%9D%B8%EC%8A%A4%ED%83%80-%ED%81%B4%EB%A1%A0-%EC%BD%94%EB%94%A9)
 <br/> 
 
 ## ⏲️ 개발기간
